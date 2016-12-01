@@ -15,28 +15,60 @@
 static int
 wiser_is_ignored_char(const UTF32Char ustr)
 {
-  switch (ustr) {
-  case ' ': case '\f': case '\n': case '\r': case '\t': case '\v':
-  case '!': case '"': case '#': case '$': case '%': case '&':
-  case '\'': case '(': case ')': case '*': case '+': case ',':
-  case '-': case '.': case '/':
-  case ':': case ';': case '<': case '=': case '>': case '?': case '@':
-  case '[': case '\\': case ']': case '^': case '_': case '`':
-  case '{': case '|': case '}': case '~':
-  case 0x3000: /* 全角空格 */
-  case 0x3001: /* 、 */
-  case 0x3002: /* 。 */
-  case 0xFF08: /* （ */
-  case 0xFF09: /* ） */
-  case 0xFF01: /* ！ */
-  case 0xFF0C: /* ， */
-  case 0xFF1A: /* ： */
-  case 0xFF1B: /* ； */
-  case 0xFF1F: /* ? */
-    return 1;
-  default:
-    return 0;
-  }
+    switch (ustr)
+    {
+        case ' ':
+        case '\f':
+        case '\n':
+        case '\r':
+        case '\t':
+        case '\v':
+        case '!':
+        case '"':
+        case '#':
+        case '$':
+        case '%':
+        case '&':
+        case '\'':
+        case '(':
+        case ')':
+        case '*':
+        case '+':
+        case ',':
+        case '-':
+        case '.':
+        case '/':
+        case ':':
+        case ';':
+        case '<':
+        case '=':
+        case '>':
+        case '?':
+        case '@':
+        case '[':
+        case '\\':
+        case ']':
+        case '^':
+        case '_':
+        case '`':
+        case '{':
+        case '|':
+        case '}':
+        case '~':
+        case 0x3000: /* 全角空格 */
+        case 0x3001: /* 、 */
+        case 0x3002: /* 。 */
+        case 0xFF08: /* （ */
+        case 0xFF09: /* ） */
+        case 0xFF01: /* ！ */
+        case 0xFF0C: /* ， */
+        case 0xFF1A: /* ： */
+        case 0xFF1B: /* ； */
+        case 0xFF1F: /* ? */
+            return 1;
+        default:
+            return 0;
+    }
 }
 
 /**
@@ -51,20 +83,22 @@ static int
 ngram_next(const UTF32Char *ustr, const UTF32Char *ustr_end,
            unsigned int n, const UTF32Char **start)
 {
-  int i;
-  const UTF32Char *p;
+    int i;
+    const UTF32Char *p;
 
-  /* 读取时跳过文本开头的空格等字符 */
-  for (; ustr < ustr_end && wiser_is_ignored_char(*ustr); ustr++) {
-  }
+    /* 读取时跳过文本开头的空格等字符 */
+    for (; ustr < ustr_end && wiser_is_ignored_char(*ustr); ustr++)
+    {
+    }
 
-  /* 不断取出最多包含n个字符的词元，直到遇到不属于索引对象的字符或到达了字符串的尾部 */
-  for (i = 0, p = ustr; i < n && p < ustr_end
-       && !wiser_is_ignored_char(*p); i++, p++) {
-  }
+    /* 不断取出最多包含n个字符的词元，直到遇到不属于索引对象的字符或到达了字符串的尾部 */
+    for (i = 0, p = ustr; i < n && p < ustr_end
+                          && !wiser_is_ignored_char(*p); i++, p++)
+    {
+    }
 
-  *start = ustr;
-  return p - ustr;
+    *start = ustr;
+    return p - ustr;
 }
 
 /**
@@ -76,19 +110,20 @@ ngram_next(const UTF32Char *ustr, const UTF32Char *ustr_end,
 static inverted_index_value *
 create_new_inverted_index(int token_id, int docs_count)
 {
-  inverted_index_value *ii_entry;
+    inverted_index_value *ii_entry;
 
-  ii_entry = malloc(sizeof(inverted_index_value));
-  if (!ii_entry) {
-    print_error("cannot allocate memory for an inverted index.");
-    return NULL;
-  }
-  ii_entry->positions_count = 0;
-  ii_entry->postings_list = NULL;
-  ii_entry->token_id = token_id;
-  ii_entry->docs_count = docs_count;
+    ii_entry = malloc(sizeof(inverted_index_value));
+    if (!ii_entry)
+    {
+        print_error("cannot allocate memory for an inverted index.");
+        return NULL;
+    }
+    ii_entry->positions_count = 0;
+    ii_entry->postings_list = NULL;
+    ii_entry->token_id = token_id;
+    ii_entry->docs_count = docs_count;
 
-  return ii_entry;
+    return ii_entry;
 }
 
 /**
@@ -99,18 +134,19 @@ create_new_inverted_index(int token_id, int docs_count)
 static postings_list *
 create_new_postings_list(int document_id)
 {
-  postings_list *pl;
+    postings_list *pl;
 
-  pl = malloc(sizeof(postings_list));
-  if (!pl) {
-    print_error("cannot allocate memory for a postings list.");
-    return NULL;
-  }
-  pl->document_id = document_id;
-  pl->positions_count = 1;
-  utarray_new(pl->positions, &ut_int_icd);
+    pl = malloc(sizeof(postings_list));
+    if (!pl)
+    {
+        print_error("cannot allocate memory for a postings list.");
+        return NULL;
+    }
+    pl->document_id = document_id;
+    pl->positions_count = 1;
+    utarray_new(pl->positions, &ut_int_icd);
 
-  return pl;
+    return pl;
 }
 
 /**
@@ -131,34 +167,40 @@ token_to_postings_list(wiser_env *env,
                        const int position,
                        inverted_index_hash **postings)
 {
-  postings_list *pl;
-  inverted_index_value *ii_entry;
-  int token_id, token_docs_count;
+    postings_list *pl;
+    inverted_index_value *ii_entry;
+    int token_id, token_docs_count;
 
-  token_id = db_get_token_id(
-               env, token, token_size, document_id, &token_docs_count);
-  if (*postings) {
-    HASH_FIND_INT(*postings, &token_id, ii_entry);
-  } else {
-    ii_entry = NULL;
-  }
-  if (ii_entry) {
-    pl = ii_entry->postings_list;
-    pl->positions_count++;
-  } else {
-    ii_entry = create_new_inverted_index(token_id,
-                                         document_id ? 1 : token_docs_count);
-    if (!ii_entry) { return -1; }
-    HASH_ADD_INT(*postings, token_id, ii_entry);
+    token_id = db_get_token_id(
+            env, token, token_size, document_id, &token_docs_count);
+    if (*postings)
+    {
+        HASH_FIND_INT(*postings, &token_id, ii_entry);
+    }
+    else
+    {
+        ii_entry = NULL;
+    }
+    if (ii_entry)
+    {
+        pl = ii_entry->postings_list;
+        pl->positions_count++;
+    }
+    else
+    {
+        ii_entry = create_new_inverted_index(token_id,
+                                             document_id ? 1 : token_docs_count);
+        if (!ii_entry) { return -1; }
+        HASH_ADD_INT(*postings, token_id, ii_entry);
 
-    pl = create_new_postings_list(document_id);
-    if (!pl) { return -1; }
-    LL_APPEND(ii_entry->postings_list, pl);
-  }
-  /* 存储位置信息 */
-  utarray_push_back(pl->positions, &position);
-  ii_entry->positions_count++;
-  return 0;
+        pl = create_new_postings_list(document_id);
+        if (!pl) { return -1; }
+        LL_APPEND(ii_entry->postings_list, pl);
+    }
+    /* 存储位置信息 */
+    utarray_push_back(pl->positions, &position);
+    ii_entry->positions_count++;
+    return 0;
 }
 
 /**
@@ -180,33 +222,38 @@ text_to_postings_lists(wiser_env *env,
                        const unsigned int text_len,
                        const int n, inverted_index_hash **postings)
 {
-  /* FIXME: now same document update is broken. */
-  int t_len, position = 0;
-  const UTF32Char *t = text, *text_end = text + text_len;
+    /* FIXME: now same document update is broken. */
+    int t_len, position = 0;
+    const UTF32Char *t = text, *text_end = text + text_len;
 
-  inverted_index_hash *buffer_postings = NULL;
+    inverted_index_hash *buffer_postings = NULL;
 
-  for (; (t_len = ngram_next(t, text_end, n, &t)); t++, position++) {
-    /* 检索时，忽略掉由t中长度不足N-gram的最后几个字符构成的词元 */
-    if (t_len >= n || document_id) {
-      int retval, t_8_size;
-      char t_8[n * MAX_UTF8_SIZE];
+    for (; (t_len = ngram_next(t, text_end, n, &t)); t++, position++)
+    {
+        /* 检索时，忽略掉由t中长度不足N-gram的最后几个字符构成的词元 */
+        if (t_len >= n || document_id)
+        {
+            int retval, t_8_size;
+            char t_8[n * MAX_UTF8_SIZE];
 
-      utf32toutf8(t, t_len, t_8, &t_8_size);
+            utf32toutf8(t, t_len, t_8, &t_8_size);
 
-      retval = token_to_postings_list(env, document_id, t_8, t_8_size,
-                                      position, &buffer_postings);
-      if (retval) { return retval; }
+            retval = token_to_postings_list(env, document_id, t_8, t_8_size,
+                                            position, &buffer_postings);
+            if (retval) { return retval; }
+        }
     }
-  }
 
-  if (*postings) {
-    merge_inverted_index(*postings, buffer_postings);
-  } else {
-    *postings = buffer_postings;
-  }
+    if (*postings)
+    {
+        merge_inverted_index(*postings, buffer_postings);
+    }
+    else
+    {
+        *postings = buffer_postings;
+    }
 
-  return 0;
+    return 0;
 }
 
 /**
@@ -217,9 +264,9 @@ text_to_postings_lists(wiser_env *env,
 void
 dump_token(wiser_env *env, int token_id)
 {
-  int token_len;
-  const char *token;
+    int token_len;
+    const char *token;
 
-  db_get_token(env, token_id, &token, &token_len);
-  printf("token: %.*s (id: %d)\n", token_len, token, token_id);
+    db_get_token(env, token_id, &token, &token_len);
+    printf("token: %.*s (id: %d)\n", token_len, token, token_id);
 }

@@ -21,6 +21,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/wiser/util.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/wiser/wikiload.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/src/Wiser.Net" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
