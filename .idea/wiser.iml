@@ -2,24 +2,24 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/database.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/util.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/postings.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/database.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/wiser.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/postings.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/include/utlist.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/include/utstring.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/include/uthash.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/include/utarray.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/wiser.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/search.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/token.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/search.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/token.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/wikiload.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/util.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/wikiload.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/database.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/util.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/postings.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/database.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/wiser.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/postings.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/include/utlist.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/include/utarray.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/include/utstring.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/include/uthash.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/wiser.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/search.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/token.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/search.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/token.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/wikiload.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/util.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/wiser/wikiload.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />

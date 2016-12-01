@@ -5,27 +5,27 @@ project(wiser)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-include_directories("src/include")
+include_directories("src/wiser/include")
 
 set(SOURCE_FILES
-    src/include/utarray.h
-    src/include/uthash.h
-    src/include/utlist.h
-    src/include/utstring.h
-    src/database.c
-    src/database.h
-    src/postings.c
-    src/postings.h
-    src/search.c
-    src/search.h
-    src/token.c
-    src/token.h
-    src/util.c
-    src/util.h
-    src/wikiload.c
-    src/wikiload.h
-    src/wiser.c
-    src/wiser.h)
+    src/wiser/include/utarray.h
+    src/wiser/include/uthash.h
+    src/wiser/include/utlist.h
+    src/wiser/include/utstring.h
+    src/wiser/database.c
+    src/wiser/database.h
+    src/wiser/postings.c
+    src/wiser/postings.h
+    src/wiser/search.c
+    src/wiser/search.h
+    src/wiser/token.c
+    src/wiser/token.h
+    src/wiser/util.c
+    src/wiser/util.h
+    src/wiser/wikiload.c
+    src/wiser/wikiload.h
+    src/wiser/wiser.c
+    src/wiser/wiser.h)
 
 add_executable(wiser ${SOURCE_FILES})
 
